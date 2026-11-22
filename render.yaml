@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: codetogether-server
+    runtime: node
+    plan: starter
+    buildCommand: corepack enable && corepack prepare pnpm@10.15.0 --activate && pnpm install --frozen-lockfile
+    startCommand: pnpm --filter @codetogether/server start
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: CLIENT_ORIGIN
+        sync: false
+      - key: LOG_LEVEL
+        value: info
+      - key: STUN_URLS
+        value: stun:stun.l.google.com:19302
+      - key: TURN_URLS
+        sync: false
+      - key: TURN_USERNAME
+        sync: false
+      - key: TURN_CREDENTIAL
+        sync: false

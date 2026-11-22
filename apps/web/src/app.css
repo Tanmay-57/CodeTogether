@@ -1,0 +1,91 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-ring: var(--ring);
+  --color-danger: var(--danger);
+}
+
+:root {
+  color-scheme: light;
+  --background: #f6f3ec;
+  --foreground: #1c1915;
+  --card: #fffdf8;
+  --muted: #ece7dc;
+  --muted-foreground: #5e584e;
+  --border: #ddd6c8;
+  --primary: #9a5b24;
+  --primary-foreground: #fff8ef;
+  --ring: #9a5b24;
+  --danger: #9f2d2d;
+}
+
+.dark {
+  color-scheme: dark;
+  --background: #0c0e12;
+  --foreground: #ece8e1;
+  --card: #14171c;
+  --muted: #1c2028;
+  --muted-foreground: #aaa49a;
+  --border: #2a2e36;
+  --primary: #e8a54b;
+  --primary-foreground: #1c1408;
+  --ring: #e8a54b;
+  --danger: #f0a3a3;
+}
+
+html,
+body,
+#app {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  text-rendering: optimizeLegibility;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+.yRemoteSelection {
+  background-color: rgb(232 165 75 / 28%);
+}
+
+.yRemoteSelectionHead {
+  position: absolute;
+  border-left: 2px solid #e8a54b;
+  height: 100%;
+  box-sizing: border-box;
+}
+
