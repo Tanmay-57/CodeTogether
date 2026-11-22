@@ -117,7 +117,7 @@ Automated tests do not prove that video works across networks.
 
 ## Deployment
 
-The API is a free Render web service built from the `Dockerfile`, so the image has Node 20 and Python 3. `render.yaml` selects the free plan and checks `/health`. The process listens on `0.0.0.0` and Render's `PORT`. A free service sleeps after 15 minutes with no visitors or open connections, takes about a minute to wake, and a sleep or restart clears every room because documents stay in memory.
+The API is a free Render web service built from the `Dockerfile`, so the image has Node 20 and Python 3. `render.yaml` selects the free plan and checks `/health`. The process listens on `0.0.0.0` and Render's `PORT`. A free service sleeps after 15 minutes with no visitors or open connections, takes about a minute to wake, and a sleep or restart clears every room because documents stay in memory. A GitHub Actions workflow requests `/health` every five minutes so the free API stays awake. An always-awake API uses about 744 of the workspace's 750 free hours in a 31-day month, and a restart still clears rooms.
 
 The site is a static Vite build. On Vercel, set the project root to `apps/web` and set these before the first production build:
 
