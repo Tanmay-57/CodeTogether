@@ -117,14 +117,14 @@ Automated tests do not prove that video works across networks.
 
 ## Deployment
 
-The web app is a static Vite build. Vercel or Netlify can host it. Set the project root to `apps/web` and set:
+The API is a free Render web service built from the `Dockerfile`, so the image has Node 20 and Python 3. `render.yaml` selects the free plan and checks `/health`. The process listens on `0.0.0.0` and Render's `PORT`. A free service sleeps after 15 minutes with no visitors or open connections, takes about a minute to wake, and a sleep or restart clears every room because documents stay in memory.
 
-- `VITE_SERVER_URL` to the public HTTPS API origin.
-- `VITE_YJS_URL` to the public `wss` origin plus `/yjs`.
+The site is a static Vite build. On Vercel, set the project root to `apps/web` and set these before the first production build:
 
-The API must be a long-lived Node service. Render and Railway web services fit. Serverless functions do not. `render.yaml` is a starting point for one Render web service. Set `CLIENT_ORIGIN` to the deployed site origin. Production CORS allows that origin only. HTTPS is required so browsers will permit `getUserMedia` outside localhost.
+- `VITE_SERVER_URL` to the Render `https` origin.
+- `VITE_YJS_URL` to the same host as `wss://.../yjs`.
 
-This repository does not ship a live deployment. Publishing it needs your hosting accounts, and video across networks needs your own TURN credentials.
+Then set Render's `CLIENT_ORIGIN` to the exact Vercel origin and redeploy. Production CORS allows that origin only. HTTPS is required so browsers will permit `getUserMedia` outside localhost. Video across two networks still needs your own TURN credentials.
 
 ## Limits and privacy
 

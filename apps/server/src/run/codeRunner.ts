@@ -304,6 +304,10 @@ export class CodeRunner {
       this.pythonCommand = { command: 'python', prefix: [] }
       return this.pythonCommand
     }
+    if (await commandWorks('python3', ['--version'])) {
+      this.pythonCommand = { command: 'python3', prefix: [] }
+      return this.pythonCommand
+    }
     if (process.platform === 'win32' && await commandWorks('py', ['-3', '--version'])) {
       this.pythonCommand = { command: 'py', prefix: ['-3'] }
       return this.pythonCommand
